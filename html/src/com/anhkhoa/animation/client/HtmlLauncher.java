@@ -1,9 +1,9 @@
 package com.anhkhoa.animation.client;
 
+import com.anhkhoa.animation.NightBorneAnimation;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import com.anhkhoa.animation.DemoAnimation;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -17,6 +17,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener createApplicationListener () {
-                return new DemoAnimation();
+                return new NightBorneAnimation();
         }
 }
