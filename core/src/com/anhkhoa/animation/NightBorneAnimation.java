@@ -84,18 +84,18 @@ public class NightBorneAnimation extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // Clear screen
         stateTime += Gdx.graphics.getDeltaTime();
 
-        TextureRegion idleCurrentTime = idleAnimation.getKeyFrame(stateTime, true);
-        TextureRegion runCurrentTime = runAnimation.getKeyFrame(stateTime, true);
-        TextureRegion attackCurrentTime = attackAnimation.getKeyFrame(stateTime, true);
-        TextureRegion hurtCurrentTime = hurtAnimation.getKeyFrame(stateTime, true);
-        TextureRegion dieCurrentTime = dieAnimation.getKeyFrame(stateTime, true);
+        TextureRegion idleCurrentFrame = idleAnimation.getKeyFrame(stateTime, true);
+        TextureRegion runCurrentFrame = runAnimation.getKeyFrame(stateTime, true);
+        TextureRegion attackCurrentFrame = attackAnimation.getKeyFrame(stateTime, true);
+        TextureRegion hurtCurrentFrame = hurtAnimation.getKeyFrame(stateTime, true);
+        TextureRegion dieCurrentFrame = dieAnimation.getKeyFrame(stateTime, true);
 
         spriteBatch.begin();
-        spriteBatch.draw(idleCurrentTime, 100, 200);
-        spriteBatch.draw(runCurrentTime, 200, 200);
-        spriteBatch.draw(attackCurrentTime, 300, 200);
-        spriteBatch.draw(hurtCurrentTime, 400, 200);
-        spriteBatch.draw(dieCurrentTime, 500, 200);
+        spriteBatch.draw(idleCurrentFrame, 100, 200);
+        spriteBatch.draw(runCurrentFrame, 200, 200);
+        spriteBatch.draw(attackCurrentFrame, 300, 200);
+        spriteBatch.draw(hurtCurrentFrame, 400, 200);
+        spriteBatch.draw(dieCurrentFrame, 500, 200);
         spriteBatch.end();
     }
 
