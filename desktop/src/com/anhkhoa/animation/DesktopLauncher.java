@@ -11,6 +11,7 @@ public class DesktopLauncher {
 		config.setWindowedMode(800, 480);
 		config.setTitle("Night borne");
 		// new Lwjgl3Application(new DemoAnimation(), config);
-		new Lwjgl3Application(new NightBorneAnimation(), config);
+		// new Lwjgl3Application(new NightBorneAnimation(), config);
+		new Lwjgl3Application(new NecromancerAnimation(), config);
 	}
 }

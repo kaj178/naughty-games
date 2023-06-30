@@ -13,12 +13,12 @@ public class NightBorneAnimation extends ApplicationAdapter {
     private static final int FRAME_COLS = 23, FRAME_ROWS = 5;
     private Texture nightBorneImage;
     private SpriteBatch spriteBatch;
-    Animation<TextureRegion> idleAnimation;
-    Animation<TextureRegion> runAnimation;
-    Animation<TextureRegion> attackAnimation;
-    Animation<TextureRegion> hurtAnimation;
-    Animation<TextureRegion> dieAnimation;
-    float stateTime;
+    private Animation<TextureRegion> idleAnimation;
+    private Animation<TextureRegion> runAnimation;
+    private Animation<TextureRegion> attackAnimation;
+    private Animation<TextureRegion> hurtAnimation;
+    private Animation<TextureRegion> dieAnimation;
+    private float stateTime;
 
     private void addFrames(TextureRegion[][] tmp, Array<TextureRegion> frames, int i, int numberOfFrames) {
         for (int j = 0; j < numberOfFrames; j++) {
@@ -59,11 +59,11 @@ public class NightBorneAnimation extends ApplicationAdapter {
             }
         }
 
-        idleAnimation = new Animation<>(0.08f, idleFrames);
-        runAnimation = new Animation<>(0.08f, runFrames);
-        attackAnimation = new Animation<>(0.07f, attackFrames);
-        hurtAnimation = new Animation<>(0.1f, hurtFrames);
-        dieAnimation = new Animation<>(0.07f, dieFrames);
+        idleAnimation = new Animation<>((float) 1/12, idleFrames);
+        runAnimation = new Animation<>((float) 1/10, runFrames);
+        attackAnimation = new Animation<>((float) 1/15, attackFrames);
+        hurtAnimation = new Animation<>((float) 1/8, hurtFrames);
+        dieAnimation = new Animation<>((float) 1/20, dieFrames);
 
         spriteBatch = new SpriteBatch();
         stateTime = 0f;
@@ -71,7 +71,16 @@ public class NightBorneAnimation extends ApplicationAdapter {
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(0.3f, 0.3f, 0.3f, 1f);
+        // rgb(7, 87, 128)
+        int red = 7;
+        int green = 87;
+        int blue = 128;
+        // Convert rgb to rgba in libgdx
+        float r = red / 255f;
+        float g = green / 255f;
+        float b = blue / 255f;
+        float alpha = 1f;
+        Gdx.gl.glClearColor(r, g, b, alpha);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); // Clear screen
         stateTime += Gdx.graphics.getDeltaTime();
 
