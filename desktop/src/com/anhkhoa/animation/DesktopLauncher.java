@@ -1,5 +1,7 @@
 package com.anhkhoa.animation;
 
+import com.anhkhoa.animation.circle.HuntingCircle;
+
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
@@ -12,6 +14,7 @@ public class DesktopLauncher {
 		config.setTitle("Night borne");
 		// new Lwjgl3Application(new DemoAnimation(), config);
 		// new Lwjgl3Application(new NightBorneAnimation(), config);
-		new Lwjgl3Application(new NecromancerAnimation(), config);
+		// new Lwjgl3Application(new NecromancerAnimation(), config);
+		new Lwjgl3Application(new HuntingCircle(), config);
 	}
 }
