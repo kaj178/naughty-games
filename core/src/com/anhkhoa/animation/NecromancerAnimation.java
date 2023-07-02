@@ -83,21 +83,7 @@ public class NecromancerAnimation extends ApplicationAdapter {
         TextureRegion skillCurrentFrame = skillAnimation.getKeyFrame(stateTime, true);
 
         spriteBatch.begin();
-        /*spriteBatch.draw(idleCurrentFrame, x, y);
 
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            if (walkCurrentFrame.isFlipX()) {
-                walkCurrentFrame.flip(true, false);
-            }
-            spriteBatch.draw(walkCurrentFrame, x, y);
-            x += 3;
-        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            if (!walkCurrentFrame.isFlipX()) {
-                walkCurrentFrame.flip(true, false);
-            }
-            spriteBatch.draw(walkCurrentFrame, x, y);
-            x -= 3;
-        }*/
         if (!isWalking) {
             if (idleFlipState) {
                 idleCurrentFrame.flip(true, false);
