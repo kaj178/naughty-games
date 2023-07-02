@@ -19,6 +19,8 @@ public class NecromancerAnimation extends ApplicationAdapter {
     private Animation<TextureRegion> walkAnimation;
     private Animation<TextureRegion> skillAnimation;
     private float stateTime;
+    private boolean idleFlipState;
+    private boolean isWalking;
 
     private void addFrames(TextureRegion[][] tmp, Array<TextureRegion> frames, int i, int numberOfFrames) {
         for (int j = 0; j < numberOfFrames; j++) {
@@ -56,6 +58,8 @@ public class NecromancerAnimation extends ApplicationAdapter {
 
         spriteBatch = new SpriteBatch();
         stateTime = 0;
+        idleFlipState = false;
+        isWalking = false;
     }
 
     @Override
@@ -79,11 +83,48 @@ public class NecromancerAnimation extends ApplicationAdapter {
         TextureRegion skillCurrentFrame = skillAnimation.getKeyFrame(stateTime, true);
 
         spriteBatch.begin();
-        spriteBatch.draw(idleCurrentFrame, x, y);
+        /*spriteBatch.draw(idleCurrentFrame, x, y);
 
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            x += 2;
+            if (walkCurrentFrame.isFlipX()) {
+                walkCurrentFrame.flip(true, false);
+            }
             spriteBatch.draw(walkCurrentFrame, x, y);
+            x += 3;
+        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            if (!walkCurrentFrame.isFlipX()) {
+                walkCurrentFrame.flip(true, false);
+            }
+            spriteBatch.draw(walkCurrentFrame, x, y);
+            x -= 3;
+        }*/
+        if (!isWalking) {
+            if (idleFlipState) {
+                idleCurrentFrame.flip(true, false);
+            }
+            spriteBatch.draw(idleCurrentFrame, x, y);
+        } /*else {
+            spriteBatch.draw(walkCurrentFrame, x, y);
+        }*/
+
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            if (walkCurrentFrame.isFlipX()) {
+                walkCurrentFrame.flip(true, false);
+            }
+            spriteBatch.draw(walkCurrentFrame, x, y);
+            x += 2;
+        } else if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            if (!walkCurrentFrame.isFlipX()) {
+                walkCurrentFrame.flip(true, false);
+                idleFlipState = true;
+            }
+            spriteBatch.draw(walkCurrentFrame, x, y);
+            x -= 2;
+        } else {
+            spriteBatch.draw(idleCurrentFrame, x, y);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            isWalking = true;
         }
 
         spriteBatch.end();
