@@ -1,5 +1,6 @@
 package com.anhkhoa.animation;
 
+import com.anhkhoa.animation.breakout.BreakOut;
 import com.anhkhoa.animation.circle.HuntingCircle;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
@@ -15,6 +16,7 @@ public class DesktopLauncher {
 		// new Lwjgl3Application(new DemoAnimation(), config);
 		// new Lwjgl3Application(new NightBorneAnimation(), config);
 		// new Lwjgl3Application(new NecromancerAnimation(), config);
-		new Lwjgl3Application(new HuntingCircle(), config);
+		// new Lwjgl3Application(new HuntingCircle(), config);
+		new Lwjgl3Application(new BreakOut(), config);
 	}
 }
