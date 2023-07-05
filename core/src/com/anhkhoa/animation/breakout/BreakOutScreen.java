@@ -1,5 +1,6 @@
 package com.anhkhoa.animation.breakout;
 
+import com.anhkhoa.animation.breakout.entity.Ball;
 import com.anhkhoa.animation.breakout.entity.Paddle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -12,14 +13,14 @@ import com.badlogic.gdx.math.Rectangle;
 public class BreakOutScreen extends ScreenAdapter {
     private ShapeRenderer shapeRenderer;
     private Paddle paddle;
-    private Circle ball;
+    private Ball ball;
     private Rectangle[] enemyPaddle;
 
     @Override
     public void show() {
         shapeRenderer = new ShapeRenderer();
         paddle = new Paddle();
-        ball = new Circle();
+        ball = new Ball();
     }
 
     @Override
@@ -31,6 +32,13 @@ public class BreakOutScreen extends ScreenAdapter {
         shapeRenderer.setColor(Color.WHITE);
         shapeRenderer.rect(paddle.getX(), paddle.getY(), paddle.getWIDTH(), paddle.getHEIGHT());
         paddle.setX(Gdx.input.getX() - paddle.getWIDTH() / 2);
+        shapeRenderer.end();
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.circle(ball.getX(), ball.getY(), ball.getRadius());
+        ball.update();
+        ball.checkCollision(paddle.getPaddle());
         shapeRenderer.end();
     }
 

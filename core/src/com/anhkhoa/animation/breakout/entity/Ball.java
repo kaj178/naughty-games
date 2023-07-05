@@ -1,4 +1,87 @@
 package com.anhkhoa.animation.breakout.entity;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
+
 public class Ball {
+    float x, y, radius, xSpeed, ySpeed;
+    private Circle ball;
+
+    public Ball() {
+        x = 50f;
+        y = 30f;
+        radius = 20f;
+        xSpeed = 5f;
+        ySpeed = 5f;
+        ball = new Circle(x, y, radius);
+    }
+
+    public void update() {
+        x += xSpeed;
+        y += ySpeed;
+
+        if (x <= 0 || x >= Gdx.graphics.getWidth()) {
+            xSpeed = -xSpeed;
+        } else if (y <= 0 || y >= Gdx.graphics.getHeight()) {
+            ySpeed = -ySpeed;
+        }
+    }
+
+    public void checkCollision(Rectangle paddle) {
+//        if (Intersector.overlaps(ball, paddle)) {
+//            ySpeed = -ySpeed;
+//        }
+        // TODO
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float getRadius() {
+        return radius;
+    }
+
+    public void setRadius(float radius) {
+        this.radius = radius;
+    }
+
+    public float getxSpeed() {
+        return xSpeed;
+    }
+
+    public void setxSpeed(float xSpeed) {
+        this.xSpeed = xSpeed;
+    }
+
+    public float getySpeed() {
+        return ySpeed;
+    }
+
+    public void setySpeed(float ySpeed) {
+        this.ySpeed = ySpeed;
+    }
+
+    public Circle getBall() {
+        return ball;
+    }
+
+    public void setBall(Circle ball) {
+        this.ball = ball;
+    }
 }
