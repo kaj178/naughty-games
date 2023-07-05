@@ -11,7 +11,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
-		config.setWindowedMode(800, 480);
+		config.setWindowedMode(1000, 700);
 		config.setTitle("Night borne");
 		// new Lwjgl3Application(new DemoAnimation(), config);
 		// new Lwjgl3Application(new NightBorneAnimation(), config);
