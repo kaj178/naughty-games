@@ -13,7 +13,7 @@ public class BreakOutScreen extends ScreenAdapter {
     private ShapeRenderer shapeRenderer;
     private Paddle paddle;
     private Ball ball;
-    private Rectangle[] enemyPaddle;
+    private Paddle[] enemyPaddle;
 
     @Override
     public void show() {
