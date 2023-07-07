@@ -7,7 +7,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
 public class BreakOutScreen extends ScreenAdapter {
@@ -37,9 +36,10 @@ public class BreakOutScreen extends ScreenAdapter {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.WHITE);
         shapeRenderer.circle(ball.getX(), ball.getY(), ball.getRadius());
+        shapeRenderer.end();
+
         ball.update();
         ball.checkCollision(paddle.getPaddle());
-        shapeRenderer.end();
     }
 
     @Override

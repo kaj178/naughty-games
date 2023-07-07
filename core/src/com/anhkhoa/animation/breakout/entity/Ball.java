@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 public class Ball {
     float x, y, radius, xSpeed, ySpeed;
     private Circle ball;
+    private final Rectangle tmpPaddle = new Rectangle();
 
     public Ball() {
         x = 50f;
@@ -31,10 +32,12 @@ public class Ball {
     }
 
     public void checkCollision(Rectangle paddle) {
-//        if (Intersector.overlaps(ball, paddle)) {
-//            ySpeed = -ySpeed;
-//        }
-        // TODO
+        if (Intersector.overlaps(ball, paddle)) {
+            tmpPaddle.set(paddle.getX(), paddle.getY() + paddle.getHeight()/2, paddle.getWidth(), paddle.getHeight()/2);
+            if (Intersector.overlaps(ball, tmpPaddle)) {
+                ySpeed = -ySpeed;
+            }
+        }
     }
 
     public float getX() {
