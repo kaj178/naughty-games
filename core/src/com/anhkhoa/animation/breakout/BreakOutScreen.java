@@ -20,6 +20,7 @@ public class BreakOutScreen extends ScreenAdapter {
         shapeRenderer = new ShapeRenderer();
         paddle = new Paddle();
         ball = new Ball();
+        enemyPaddle = new Paddle[20];
     }
 
     @Override
