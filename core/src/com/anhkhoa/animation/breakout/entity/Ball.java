@@ -7,16 +7,15 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Ball {
-    float x, y, radius, xSpeed, ySpeed;
+    private float x = 50f, y = 30f, radius = 20f, xSpeed = 5f, ySpeed = 5f;
     private Circle ball;
     private final Rectangle tmpPaddle = new Rectangle();
 
     public Ball() {
-        x = 50f;
-        y = 30f;
-        radius = 20f;
-        xSpeed = 5f;
-        ySpeed = 5f;
+        init(x, y, radius);
+    }
+
+    private void init(float x, float y, float radius) {
         ball = new Circle(x, y, radius);
     }
 
@@ -31,12 +30,15 @@ public class Ball {
         }
     }
 
-    public void checkCollision(Rectangle paddle) {
-        if (Intersector.overlaps(ball, paddle)) {
-            tmpPaddle.set(paddle.getX(), paddle.getY() + paddle.getHeight()/2, paddle.getWidth(), paddle.getHeight()/2);
-            if (Intersector.overlaps(ball, tmpPaddle)) {
-                ySpeed = -ySpeed;
-            }
+    public void checkCollision(Paddle paddle) {
+//        if (Intersector.overlaps(ball, paddle)) {
+//            tmpPaddle.set(paddle.getX(), paddle.getY() + paddle.getHeight()/2, paddle.getWidth(), paddle.getHeight()/2);
+//            if (Intersector.overlaps(this.getBall(), tmpPaddle.)) {
+//                ySpeed = -ySpeed;
+//            }
+//        }
+        if (Intersector.overlaps(this.getBall(), paddle.getPaddle())) {
+            ySpeed = -ySpeed;
         }
     }
 

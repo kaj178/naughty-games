@@ -4,14 +4,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Paddle {
-    private float x, y, WIDTH, HEIGHT;
+    private float WIDTH = 150f, HEIGHT = 10f;
+    private float x = Gdx.graphics.getWidth() / 2 - WIDTH / 2;
+    private float y = 20;
     private Rectangle paddle;
 
     public Paddle() {
-        WIDTH = 150f;
-        HEIGHT = 10f;
-        x = Gdx.graphics.getWidth() / 2 - WIDTH / 2;
-        y = 20;
+        init(x, y, WIDTH, HEIGHT);
+    }
+
+    private void init(float x, float y, float WIDTH, float HEIGHT) {
         paddle = new Rectangle(x, y, WIDTH, HEIGHT);
     }
 
