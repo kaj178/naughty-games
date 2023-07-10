@@ -7,16 +7,16 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Ball {
-    private float x = 50f, y = 30f, radius = 20f, xSpeed = 5f, ySpeed = 5f;
-    private Circle ball;
-    private final Rectangle tmpPaddle = new Rectangle();
+    // private float x = 50f, y = 30f, radius = 20f, xSpeed = 5f, ySpeed = 5f;
+    private float x = 50f, y = 30f, width = 22f, height = 22f, xSpeed = 5f, ySpeed = 5f;
+    private Rectangle ball;
 
     public Ball() {
-        init(x, y, radius);
+        init(x, y, width, height);
     }
 
-    private void init(float x, float y, float radius) {
-        ball = new Circle(x, y, radius);
+    private void init(float x, float y, float width, float height) {
+        ball = new Rectangle(x, y, width, height);
     }
 
     public void update() {
@@ -37,7 +37,10 @@ public class Ball {
 //                ySpeed = -ySpeed;
 //            }
 //        }
-        if (Intersector.overlaps(this.getBall(), paddle.getPaddle())) {
+//        if (Intersector.overlaps(this.getBall(), paddle.getPaddle())) {
+//            ySpeed = -ySpeed;
+//        }
+        if (this.getBall().overlaps(paddle.getPaddle())) {
             ySpeed = -ySpeed;
         }
     }
@@ -58,35 +61,13 @@ public class Ball {
         this.y = y;
     }
 
-    public float getRadius() {
-        return radius;
-    }
 
-    public void setRadius(float radius) {
-        this.radius = radius;
-    }
 
-    public float getxSpeed() {
-        return xSpeed;
-    }
-
-    public void setxSpeed(float xSpeed) {
-        this.xSpeed = xSpeed;
-    }
-
-    public float getySpeed() {
-        return ySpeed;
-    }
-
-    public void setySpeed(float ySpeed) {
-        this.ySpeed = ySpeed;
-    }
-
-    public Circle getBall() {
+    public Rectangle getBall() {
         return ball;
     }
 
-    public void setBall(Circle ball) {
+    public void setBall(Rectangle ball) {
         this.ball = ball;
     }
 }

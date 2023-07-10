@@ -61,14 +61,17 @@ public class BreakOutScreen extends ScreenAdapter {
 
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
-        spriteBatch.draw(ballTex, ball.getX() - ball.getRadius(), ball.getY() - ball.getRadius());
+        spriteBatch.draw(ballTex, ball.getX(), ball.getY());
         spriteBatch.draw(paddleTex, paddle.getX(), paddle.getY());
-        paddle.setX(Gdx.input.getX() - paddle.getWIDTH() / 2);
+        paddle.setX(Gdx.input.getX() - paddle.getWIDTH()/2);
         // sprite.draw(spriteBatch);
         spriteBatch.end();
 
         ball.update();
-        ball.checkCollision(paddle);
+        // ball.checkCollision(paddle);
+        if (paddle.getPaddle().overlaps(ball.getBall())) {
+            ball.setY(-ball.getY());
+        }
     }
 
     @Override
