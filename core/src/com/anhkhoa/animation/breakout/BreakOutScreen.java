@@ -4,18 +4,19 @@ import com.anhkhoa.animation.breakout.entity.Ball;
 import com.anhkhoa.animation.breakout.entity.Paddle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
-import org.w3c.dom.Text;
 
 public class BreakOutScreen extends ScreenAdapter {
     private ShapeRenderer shapeRenderer;
     private SpriteBatch spriteBatch;
+    private Sprite sprite;
     private Texture ballTex;
     private Texture paddleTex;
     private Paddle paddle;
@@ -27,12 +28,15 @@ public class BreakOutScreen extends ScreenAdapter {
     public void show() {
         shapeRenderer = new ShapeRenderer();
         camera = new OrthographicCamera();
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         spriteBatch = new SpriteBatch();
         ballTex = new Texture(Gdx.files.internal("breakout/ball.png"));
         paddleTex = new Texture(Gdx.files.internal("breakout/paddle.png"));
-        paddle = new Paddle();
         ball = new Ball();
-        enemyPaddle = new Paddle[20];
+        paddle = new Paddle();
+
+//        sprite = new Sprite(ballTex);
+//        sprite.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
     }
 
     @Override
@@ -57,12 +61,14 @@ public class BreakOutScreen extends ScreenAdapter {
 
         spriteBatch.setProjectionMatrix(camera.combined);
         spriteBatch.begin();
-        spriteBatch.draw(ballTex, ball.getX(), ball.getY());
-        spriteBatch.draw(paddleTex, paddle.getX(), paddle.getY(), paddle.getWIDTH(), paddle.getHEIGHT());
+        spriteBatch.draw(ballTex, ball.getX() - ball.getRadius(), ball.getY() - ball.getRadius());
+        spriteBatch.draw(paddleTex, paddle.getX(), paddle.getY());
         paddle.setX(Gdx.input.getX() - paddle.getWIDTH() / 2);
+        // sprite.draw(spriteBatch);
         spriteBatch.end();
 
         ball.update();
+        ball.checkCollision(paddle);
     }
 
     @Override
