@@ -1,9 +1,6 @@
 package com.anhkhoa.animation.breakout.entity;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Ball {
@@ -24,9 +21,9 @@ public class Ball {
         y += ySpeed;
 
         if (x <= 0 || x >= Gdx.graphics.getWidth()) {
-            xSpeed = -xSpeed;
+            xSpeed *= -1;
         } else if (y <= 0 || y >= Gdx.graphics.getHeight()) {
-            ySpeed = -ySpeed;
+            ySpeed *= -1;
         }
     }
 
@@ -41,7 +38,7 @@ public class Ball {
 //            ySpeed = -ySpeed;
 //        }
         if (this.getBall().overlaps(paddle.getPaddle())) {
-            ySpeed = -ySpeed;
+            this.setySpeed(-ySpeed);
         }
     }
 
@@ -61,7 +58,37 @@ public class Ball {
         this.y = y;
     }
 
+    public float getWidth() {
+        return width;
+    }
 
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
+    public float getxSpeed() {
+        return xSpeed;
+    }
+
+    public void setxSpeed(float xSpeed) {
+        this.xSpeed = xSpeed;
+    }
+
+    public float getySpeed() {
+        return ySpeed;
+    }
+
+    public void setySpeed(float ySpeed) {
+        this.ySpeed = ySpeed;
+    }
 
     public Rectangle getBall() {
         return ball;

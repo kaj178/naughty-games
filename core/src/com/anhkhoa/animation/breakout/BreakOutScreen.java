@@ -1,6 +1,7 @@
 package com.anhkhoa.animation.breakout;
 
 import com.anhkhoa.animation.breakout.entity.Ball;
+import com.anhkhoa.animation.breakout.entity.Ball2;
 import com.anhkhoa.animation.breakout.entity.Paddle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -10,8 +11,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Rectangle;
 
 public class BreakOutScreen extends ScreenAdapter {
     private ShapeRenderer shapeRenderer;
@@ -21,6 +20,7 @@ public class BreakOutScreen extends ScreenAdapter {
     private Texture paddleTex;
     private Paddle paddle;
     private Ball ball;
+    private Ball2 ball2;
     private Paddle[] enemyPaddle;
     private OrthographicCamera camera;
 
@@ -34,6 +34,7 @@ public class BreakOutScreen extends ScreenAdapter {
         paddleTex = new Texture(Gdx.files.internal("breakout/paddle.png"));
         ball = new Ball();
         paddle = new Paddle();
+        ball2 = new Ball2(100, 200);
 
 //        sprite = new Sprite(ballTex);
 //        sprite.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
@@ -64,14 +65,13 @@ public class BreakOutScreen extends ScreenAdapter {
         spriteBatch.draw(ballTex, ball.getX(), ball.getY());
         spriteBatch.draw(paddleTex, paddle.getX(), paddle.getY());
         paddle.setX(Gdx.input.getX() - paddle.getWIDTH()/2);
-        // sprite.draw(spriteBatch);
         spriteBatch.end();
 
         ball.update();
-        // ball.checkCollision(paddle);
-        if (paddle.getPaddle().overlaps(ball.getBall())) {
-            ball.setY(-ball.getY());
-        }
+        ball.checkCollision(paddle);
+//        if (paddle.getPaddle().overlaps(ball.getBall())) {
+//            ball.setY(-ball.getY());
+//        }
     }
 
     @Override

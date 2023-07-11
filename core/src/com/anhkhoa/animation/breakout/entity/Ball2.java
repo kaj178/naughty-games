@@ -12,8 +12,6 @@ public class Ball2 {
     private Sprite ballSprite;
     private Circle bounds;
 
-    private float xSpeed, ySpeed;
-
     public Ball2(float x, float y) {
         init(x, y);
     }
@@ -35,11 +33,31 @@ public class Ball2 {
         velocity.y = y;
     }
 
-    public void checkCollision() {
-
-    }
-
     public void render(SpriteBatch batch) {
         ballSprite.draw(batch);
+    }
+
+    public Vector2 getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(Vector2 velocity) {
+        this.velocity = velocity;
+    }
+
+    public Sprite getBallSprite() {
+        return ballSprite;
+    }
+
+    public void setBallSprite(Sprite ballSprite) {
+        this.ballSprite = ballSprite;
+    }
+
+    public Circle getBounds() {
+        return bounds;
+    }
+
+    public void setBounds(Circle bounds) {
+        this.bounds = bounds;
     }
 }
