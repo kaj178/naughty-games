@@ -24,7 +24,6 @@ public class BreakOutScreen2 extends ScreenAdapter {
         ball = new Ball2(100, 200);
         xSpeed = MathUtils.random(-300, 300);
         ySpeed = 300;
-        checkWallCollision();
         ball.setVelocity(xSpeed, ySpeed);
     }
 
@@ -36,30 +35,14 @@ public class BreakOutScreen2 extends ScreenAdapter {
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.disableBlending();
 
         ball.render(batch);
         ball.update(Gdx.graphics.getDeltaTime());
 
-
-        batch.enableBlending();
         batch.end();
     }
 
-    public void checkWallCollision() {
-        if (ball.getBounds().x <= 0) {
-            xSpeed *= -1;
-        }
-        if (ball.getBounds().x >= Gdx.graphics.getWidth()) {
-            xSpeed *= -1;
-        }
-        if (ball.getBounds().y <= 0) {
-            ySpeed *= -1;
-        }
-        if (ball.getBounds().y >= Gdx.graphics.getHeight()) {
-            ySpeed *= -1;
-        }
-    }
+
 
     @Override
     public void dispose() {

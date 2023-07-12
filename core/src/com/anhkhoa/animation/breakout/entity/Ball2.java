@@ -5,19 +5,23 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 public class Ball2 {
     private Vector2 velocity;
     private Sprite ballSprite;
     private Circle bounds;
+    private float xSpeed, ySpeed;
 
     public Ball2(float x, float y) {
         init(x, y);
     }
 
     private void init(float x, float y) {
-        velocity = new Vector2(0, 0);
+        xSpeed = 0;
+        ySpeed = 0;
+        velocity = new Vector2(xSpeed, ySpeed);
         ballSprite = new Sprite(new Texture(Gdx.files.internal("breakout/ball.png")));
         ballSprite.setPosition(x, y);
         bounds = new Circle(ballSprite.getX(), ballSprite.getY(), ballSprite.getWidth() / 2);
@@ -26,6 +30,22 @@ public class Ball2 {
     public void update(float delta) {
         ballSprite.translate(velocity.x * delta, velocity.y * delta);
         bounds.setPosition(ballSprite.getX(), ballSprite.getY());
+        checkWallCollision();
+    }
+
+    public void checkWallCollision() {
+        if (this.getBounds().x <= 0) {
+            velocity.x *= -1;
+        }
+        if (this.getBounds().x >= Gdx.graphics.getWidth() - this.getBounds().radius) {
+            velocity.x *= -1;
+        }
+        if (this.getBounds().y <= 0) {
+            velocity.y *= -1;
+        }
+        if (this.getBounds().y >= Gdx.graphics.getHeight() - this.getBounds().radius) {
+            velocity.y *= -1;
+        }
     }
 
     public void setVelocity(float x, float y) {
@@ -59,5 +79,21 @@ public class Ball2 {
 
     public void setBounds(Circle bounds) {
         this.bounds = bounds;
+    }
+
+    public float getxSpeed() {
+        return xSpeed;
+    }
+
+    public void setxSpeed(float xSpeed) {
+        this.xSpeed = xSpeed;
+    }
+
+    public float getySpeed() {
+        return ySpeed;
+    }
+
+    public void setySpeed(float ySpeed) {
+        this.ySpeed = ySpeed;
     }
 }
