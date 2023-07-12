@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class MainBall {
@@ -45,6 +47,37 @@ public class MainBall {
         if (this.getBounds().y >= Gdx.graphics.getHeight() - this.getBounds().radius) {
             velocity.y *= -1;
         }
+    }
+
+    public void checkPaddleCollision(Rectangle paddle) {
+        if (Intersector.overlaps(this.getBounds(), paddle)) {
+            // Identify the collision point (x, y) between ball and paddle
+            Vector2 collisionPoint = new Vector2(this.getBounds().x, paddle.getY() + paddle.getHeight());
+
+            Vector2 newVelocity = calculateReflectVelocity(this.getVelocity(), collisionPoint, paddle);
+            this.setVelocity(newVelocity);
+        }
+    }
+
+    private Vector2 calculateReflectVelocity(Vector2 oldVelocity, Vector2 collisionPoint, Rectangle paddle) {
+        // Calculate direction and speed of ball after collision
+        Vector2 newVelocity = new Vector2(oldVelocity);
+        float ballCenterX = collisionPoint.x;
+        float paddleCenterX = paddle.getX() + (paddle.getWidth() / 2);
+
+        // Tính toán hệ số phản xạ dựa trên vị trí va chạm trên paddle
+        float reflectionFactor = (ballCenterX - paddleCenterX) / (paddle.width / 2);
+
+        // Đặt giới hạn tốc độ tối đa
+//        float maxSpeed = 10.0f;
+//        if (newVelocity.len() > maxSpeed) {
+//            newVelocity.setLength(maxSpeed);
+//        }
+
+        newVelocity.y += reflectionFactor * 2;
+        newVelocity.y = Math.abs(newVelocity.y);
+
+        return newVelocity;
     }
 
     public void setVelocity(float x, float y) {

@@ -18,15 +18,9 @@ public class MainPaddle {
     }
 
     private void init(float x, float y) {
-        // velocity = new Vector2(Gdx.input.getX(), 0);
         paddleSprite = new Sprite(new Texture(Gdx.files.internal("breakout/paddle.png")));
         paddleSprite.setPosition(x, y);
         bounds = new Rectangle(paddleSprite.getX(), paddleSprite.getY(), paddleSprite.getWidth(), paddleSprite.getHeight());
-    }
-
-    public void update() {
-        // bounds.setPosition(Gdx.input.getX(), paddleSprite.getY());
-        paddleSprite.translate(Gdx.input.getX(), paddleSprite.getY());
     }
 
     public void setPosition(float x, float y) {

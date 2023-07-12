@@ -41,7 +41,7 @@ public class MainBreakOutScreen extends ScreenAdapter {
         ball.update(Gdx.graphics.getDeltaTime());
         paddle.render(batch);
         paddle.setPosition(Gdx.input.getX() - paddle.getBounds().getWidth()/2, paddle.getBounds().getY());
-
+        ball.checkPaddleCollision(paddle.getBounds());
         batch.end();
     }
 
