@@ -1,7 +1,7 @@
 package com.anhkhoa.animation.breakout;
 
 import com.anhkhoa.animation.breakout.entity.Ball;
-import com.anhkhoa.animation.breakout.entity.Ball2;
+import com.anhkhoa.animation.breakout.entity.MainBall;
 import com.anhkhoa.animation.breakout.entity.Paddle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -20,7 +20,7 @@ public class BreakOutScreen extends ScreenAdapter {
     private Texture paddleTex;
     private Paddle paddle;
     private Ball ball;
-    private Ball2 ball2;
+    private MainBall ball2;
     private Paddle[] enemyPaddle;
     private OrthographicCamera camera;
 
@@ -34,7 +34,7 @@ public class BreakOutScreen extends ScreenAdapter {
         paddleTex = new Texture(Gdx.files.internal("breakout/paddle.png"));
         ball = new Ball();
         paddle = new Paddle();
-        ball2 = new Ball2(100, 200);
+        ball2 = new MainBall(100, 200);
 
 //        sprite = new Sprite(ballTex);
 //        sprite.setPosition(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);

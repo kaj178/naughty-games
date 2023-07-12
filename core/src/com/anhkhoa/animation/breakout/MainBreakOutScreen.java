@@ -1,19 +1,19 @@
 package com.anhkhoa.animation.breakout;
 
-import com.anhkhoa.animation.breakout.entity.Ball2;
+import com.anhkhoa.animation.breakout.entity.MainBall;
+import com.anhkhoa.animation.breakout.entity.MainPaddle;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.ScreenUtils;
 
-public class BreakOutScreen2 extends ScreenAdapter {
+public class MainBreakOutScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private SpriteBatch batch;
-    private Ball2 ball;
-
+    private MainBall ball;
+    private MainPaddle paddle;
     float xSpeed, ySpeed;
 
     @Override
@@ -21,10 +21,11 @@ public class BreakOutScreen2 extends ScreenAdapter {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
-        ball = new Ball2(100, 200);
+        ball = new MainBall(100, 200);
         xSpeed = MathUtils.random(-300, 300);
         ySpeed = 300;
         ball.setVelocity(xSpeed, ySpeed);
+        paddle = new MainPaddle(Gdx.graphics.getWidth() / 2, 20);
     }
 
     @Override
@@ -38,6 +39,8 @@ public class BreakOutScreen2 extends ScreenAdapter {
 
         ball.render(batch);
         ball.update(Gdx.graphics.getDeltaTime());
+        paddle.render(batch);
+        paddle.setPosition(Gdx.input.getX() - paddle.getBounds().getWidth()/2, paddle.getBounds().getY());
 
         batch.end();
     }
